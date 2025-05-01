@@ -1,64 +1,121 @@
-Web GIS–NLP Geospatial Query System
-A lightweight, web-based Geospatial Information System (GIS) that integrates Natural Language Processing (NLP) and interactive mapping to help users intuitively query and visualize spatial data.
-Designed as a solution for challenges faced by government bodies, regional planning agencies, and geospatial analysts, particularly within the context of India’s evolving geospatial data ecosystem.
+# Web GIS–NLP Geospatial Query System
 
-Key Features
-Natural Language Query Support
-Users can ask plain-language queries like:
+A lightweight, web-based **Geospatial Information System (GIS)** that integrates **Natural Language Processing (NLP)** and **interactive mapping** to help users intuitively query and visualize spatial data.
 
-“Mark forests in a wide region” — all forests within the specified region (e.g., 200 km) will be highlighted
+This system is designed to address the geospatial data challenges faced by **government bodies**, **regional planning agencies**, and **geospatial analysts**, with a focus on India’s evolving geospatial ecosystem.
 
-“Show religious places in Mumbai” — religious sites within 50 km of Mumbai are displayed
+---
 
-“Show transport stations nearby” — transport hubs within 2 km of the user’s location will be visualized
+## Key Features
 
-Location-Aware Filtering
-Automatically detects the user’s location or a specified reference point and filters geospatial features based on query-defined ranges.
+### 🗺️ Natural Language Query Support
+Query spatial data using simple, plain-language commands:
+- **“Mark forests in a wide region”** → Highlights all forests within a 200 km radius.
+- **“Show religious places in Mumbai”** → Displays religious sites within 50 km of Mumbai.
+- **“Show transport stations nearby”** → Visualizes transport hubs within 2 km of the user's location.
 
-Custom Dataset Support
-Regional planning bodies can upload and work with their own  GeoJSON datasets seamlessly into data folder then add then keywords in backend keyword section and theybcan query their own dayasets using that — no hardcoded datasets.
+### 📍 Location-Aware Filtering
+Automatically detects the user’s location (or a specified point) and filters geospatial features within user-defined ranges.
 
-Low Compute Requirement
-Optimized to run efficiently on low-power devices (compared to heavyweight GIS platforms), making it accessible to organizations with limited resources.
+### 📂 Custom Dataset Support
+Regional planning bodies and users can:
+- Upload their own **GeoJSON datasets** into the `data/` folder.
+- Define associated **keywords** in the backend keyword section.
+- Seamlessly query their custom datasets — no hardcoded datasets required.
 
-Architecture Overview
-Backend (Python + Flask)
+### ⚡ Low Compute Requirement
+Optimized to run smoothly on **low-power devices**, making it accessible to organizations without heavy computing infrastructure.
 
-Flask: REST API server
+---
 
-glob, GeoJSON: Dataset handling and filtering
+## Architecture Overview
 
-Geospatial filtering and keyword extraction handled server-side
+| Layer        | Tools / Libraries            |
+|--------------|------------------------------|
+| **Frontend** | HTML, CSS, JavaScript, Leaflet.js, OpenStreetMap |
+| **Backend**  | Python (Flask, glob, GeoJSON) |
+| **NLP Engine** | Gemini API (for query parsing) |
 
-Frontend (Web)
+### Backend (Python + Flask)
+- **Flask:** REST API server
+- **glob, GeoJSON:** Dataset handling, filtering, and feature extraction
+- **Gemini API:** NLP query parsing
 
-HTML, CSS, JavaScript
+### Frontend (Web)
+- Interactive maps with **Leaflet.js** and **OpenStreetMap**
+- REST API integration for dynamic visualization
 
-Leaflet.js + OpenStreetMap for interactive maps
+---
 
-REST API integration to retrieve filtered data and visualize it dynamically
+## Example Use Cases
 
-Example Use Cases
-Government & Urban Planning
-Regional authorities can upload land use, forest cover, transport infrastructure, or administrative boundary data and query it for decision-making.
+- **Government & Urban Planning:** Upload and query land use, forest cover, transport, or administrative boundary data for decision-making.
+- **Environmental Monitoring:** Visualize forests, rivers, wetlands, and other features in sensitive or strategic zones.
+- **Tourism & Infrastructure Development:** Locate religious sites, transport hubs, and other points of interest within custom distances.
 
-Environmental Monitoring
-Easily visualize forests, rivers, wetlands, and other features around specific regions or sensitive zones.
+---
 
-Tourism & Infrastructure Development
-Locate religious sites, transport hubs, or other POIs within custom distances.
+## Why This System?
 
-Why This System?
-Solves India-specific geospatial data access problems
+✅ Solves **India-specific** geospatial data challenges  
+✅ Easily **customizable** for regional datasets and localized queries  
+✅ **Lightweight** alternative to conventional GIS platforms  
+✅ Empowers users with **NLP** — no GIS expertise required
 
-Customizable for regional datasets and localized queries
+---
 
-Lightweight compared to conventional GIS platforms
+## Getting Started
 
-Empowers users with NLP — no complex GIS knowledge required
+Follow these steps to install and run the project locally:
 
-Tech Stack
-Layer	Tools / Libraries
-Frontend	HTML, CSS, JavaScript, Leaflet.js, OpenStreetMap
-Backend	Python (Flask, glob, GeoJSON)
-NLP Engine	Gemini (for query parsing)
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/your-username/web-gis-nlp.git
+cd web-gis-nlp
+
+### 2️⃣ Install Python Dependencies
+
+Ensure you have **Python 3.x** installed on your system.
+
+Install all required libraries by running:
+
+```bash
+pip install -r requirements.txt
+
+###3️⃣ Add Your Gemini API Key
+In the backend configuration file config.py, add your Gemini API Key:
+
+python
+Copy
+Edit
+GEMINI_API_KEY = "your_api_key_here"
+
+###4️⃣ Add Your Geospatial Data
+Place your GeoJSON datasets into the data/ folder.
+
+In the backend keyword section keywords.py, map relevant keywords to dataset names:
+
+keywords = {
+    "forests": "forests.geojson",
+    "religious places": "religious_places.geojson",
+    "transport stations": "transport_stations.geojson"
+}
+
+###5️⃣ Configure Flask Template Path
+In index.py, set the path to the frontend folder:
+
+python
+Copy
+Edit
+app = Flask(__name__, template_folder='frontend')
+
+###6️⃣ Run the Application
+Run the backend server:
+
+bash
+Copy
+Edit
+python index.py
+
+
+
