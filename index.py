@@ -14,8 +14,8 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Constants - Keeping hardcoded values as requested
-GEMINI_API_KEY = "AIzaSyD22owBS2FxGokZ45oeOrQapWgaN62TV2c"  # Keeping as requested
+
+GEMINI_API_KEY = ""  # add this as needed
 GEOJSON_DIR = 'C:/Users/Asus/OneDrive/Documents/Assassins_Creed_Odyssey/data/json'  # Keeping as requested
 
 # Mount Mary Bandra coordinates (latitude, longitude) - DEFAULT LOCATION
@@ -65,7 +65,7 @@ RANGES = {
     "wide": 100       # Wide area search
 }
 
-# Create Flask application
+# Creates Flask application
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
@@ -76,7 +76,7 @@ class LocationSearchSystem:
         self.user_location = DEFAULT_LOCATION
         logger.info(f"Initializing LocationSearchSystem with directory: {geojson_directory}")
         
-        # Ensure directory exists
+        # Ensure directory exists- checks the existence of geojson files
         if not os.path.exists(self.geojson_directory):
             logger.warning(f"Directory {self.geojson_directory} does not exist. Creating it...")
             os.makedirs(self.geojson_directory, exist_ok=True)
@@ -534,7 +534,7 @@ def search_places():
 @app.route('/', methods=['GET'])
 def index():
     try:
-        index_path = 'C:/Users/Asus/OneDrive/Documents/Assassins_Creed_Odyssey/templates/index.html'
+        index_path = 'templates/index2.html'#path to the index2file frontend
         if os.path.exists(index_path):
             return flask.send_from_directory(
                 os.path.dirname(index_path), 
